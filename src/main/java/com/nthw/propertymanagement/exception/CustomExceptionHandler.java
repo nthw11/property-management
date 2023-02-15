@@ -14,10 +14,12 @@ import java.util.List;
 
 @ControllerAdvice
 public class CustomExceptionHandler {
+
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<ErrorModel>> handleFieldValidation (MethodArgumentNotValidException manv){
+    public ResponseEntity<List<ErrorModel>> handleFieldValidation(MethodArgumentNotValidException manv){
+
         List<ErrorModel> errorModelList = new ArrayList<>();
         ErrorModel errorModel = null;
         List<FieldError> fieldErrorList = manv.getBindingResult().getFieldErrors();
@@ -30,15 +32,18 @@ public class CustomExceptionHandler {
             errorModel.setMessage(fe.getDefaultMessage());
             errorModelList.add(errorModel);
         }
+
         return new ResponseEntity<List<ErrorModel>>(errorModelList, HttpStatus.BAD_REQUEST);
+
     }
+
     @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<List<ErrorModel>> handleBusinessException(BusinessException bex) {
+    public ResponseEntity<List<ErrorModel>> handleBusinessException(BusinessException bex){
         for(ErrorModel em: bex.getErrors()){
-        logger.debug("Business Exception is thrown - level: DEBUG: {} - {}", em.getCode(), em.getMessage());
-        logger.info("Business Exception is thrown - level: INFO: {} - {}", em.getCode(), em.getMessage());
-        logger.warn("Business Exception is thrown - level: WARN: {} - {}", em.getCode(), em.getMessage());
-        logger.error("Business Exception is thrown - level: ERROR: {} - {}", em.getCode(), em.getMessage());
+            logger.debug("BusinessException is thrown - level- debug: {} - {}", em.getCode(), em.getMessage());
+            logger.info("BusinessException is thrown - level- info: {} - {}", em.getCode(), em.getMessage());
+            logger.warn("BusinessException is thrown - level-warn: {} - {}", em.getCode(), em.getMessage());
+            logger.error("BusinessException is thrown - level-error: {} - {}", em.getCode(), em.getMessage());
         }
         return new ResponseEntity<List<ErrorModel>>(bex.getErrors(), HttpStatus.BAD_REQUEST);
     }

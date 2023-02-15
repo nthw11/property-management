@@ -19,7 +19,3 @@ z
 Jsrc/main/java/com/nthw/propertymanagement/exception/BusinessException.java,c\8\c8642b72224af9016020c7fae6fbd1ecf6fb1fce
 j
 :src/main/java/com/nthw/propertymanagement/dto/UserDTO.java,d\1\d1377eed6bac8c73245a2898f9cbb864d8edef44
-x
-Hsrc/main/java/com/nthw/propertymanagement/controller/UserController.java,0\d\0d49deee552d996171e55066d7108cad8cf5284e
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
